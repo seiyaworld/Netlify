@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字数カウントサービス</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+        textarea { width: 100%; height: 100px; }
+        input, button { margin-top: 10px; display: block; width: 100%; padding: 10px; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>文字数カウントサービス</h2>
+    <textarea id="textInput" placeholder="ここにテキストを入力"></textarea>
+    
+    <label>特定の文字を検索:</label>
+    <input type="text" id="searchChar" placeholder="例: 'あ'">
+    
+    <button onclick="countText()">カウント</button>
+    
+    <div id="result"></div>
+
+    <script>
+        function countOccurrences(text, target) {
+            return target ? (text.split(target).length - 1) : 0;
+        }
+
+        function countText() {
+            const text = document.getElementById("textInput").value;
+            const searchChar = document.getElementById("searchChar").value;
+            const totalLength = text.length;
+            const targetCount = countOccurrences(text, searchChar);
+
+            document.getElementById("result").innerHTML = 
+                `文字数: ${totalLength} <br> '${searchChar}' の出現回数: ${targetCount}`;
+        }
+    </script>
+</body>
+</html>
